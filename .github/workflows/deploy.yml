@@ -26,8 +26,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Esperar a LocalStack
-        run: |
-          sleep 10
+        run:  sleep 10
 
       - name: Inicializar Terraform
         run: terraform init
