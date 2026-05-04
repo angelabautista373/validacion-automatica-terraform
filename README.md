@@ -10,3 +10,5 @@ Cada vez que se realiza un push al repositorio, se ejecuta automáticamente:
 - terraform validate
 
 Esto permite detectar errores en la configuración antes de desplegar infraestructura.
+
+Trigger deploy final

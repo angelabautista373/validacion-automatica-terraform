@@ -23,15 +23,17 @@ jobs:
             -p 4566:4566 \
             -e SERVICES=s3 \
             -e DEBUG=1 \
-            localstack/localstack
+            -e LS_LOG=warn \
+            -e LOCALSTACK _AUTH_TOKEN= \
+            localstack/localstack:latest
 
       - name: Esperar a LocalStack
         run: |
           for i in {1..10}; do
-            curl -s http://localhost:4566/health | grep '"s3": "running"' && break
-            echo "Esperando LocalStack..."
-            sleep 5
-          done
+          curl http://localhost:4566/health | grep '"s3": "running"' && break
+          echo "Esperando LocalStack..."
+          sleep 15
+        done
 
       - name: Inicializar Terraform
         run: terraform init
