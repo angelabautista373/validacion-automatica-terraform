@@ -30,13 +30,18 @@ jobs:
         run: |
           sleep 10
           docker logs localstack
-      - name: Inicializar Terraform
-        run: terraform init
 
-      - name: Plan Terraform
-        run: terraform plan
-
-      - name: Apply Terraform
-        run: terraform apply -auto-approve
+      - name: Ejecutar Terraform dentro de LocalStack
+        run: |
+          docker exec localstack sh -c "
+            apk add --no-cache curl unzip &&
+            curl -o terraform.zip https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip &&
+            unzip terraform.zip &&
+            mv terraform /usr/local/bin/ &&
+            terraform init &&
+            terraform plan &&
+            terraform apply -auto-approve
+ 
+          "
 
 # fix final deploy
