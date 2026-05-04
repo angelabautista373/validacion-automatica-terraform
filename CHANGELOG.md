@@ -1,6 +1,6 @@
 # CHANGELOG
 
-##[v1.1]
+## [v1.1]
 ### Cambios
 - Mejora en la configuracion de Terraform
 - Ajustes menores en la infraestructura
@@ -9,6 +9,6 @@
 ---
 
 ## [v1.0]
-###cambios
+### cambios
 - Version inicial del proyecto 
 - Configuracion basica de Terraform con LocalStack
