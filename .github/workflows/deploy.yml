@@ -1,4 +1,5 @@
 name: Terraform Deploy (LocalStack)
+name: Terraform Deploy (LocalStack)
 
 on:
   push:
@@ -20,8 +21,13 @@ jobs:
         run: |
           docker run -d -p 4566:4566 -e SERVICES=s3 -e DEBUG=1 localstack/localstack
 
-      - name: Esperar a LocalStack
-        run: sleep 20
+      - name: Esperar a LocalStack (comprobación real)
+        run: |
+          for i in {1..10}; do
+            curl -s http://localhost:4566/health | grep '"s3": "running"' && break
+            echo "Esperando LocalStack..."
+            sleep 5
+          done
 
       - name: Inicializar Terraform
         run: terraform init
