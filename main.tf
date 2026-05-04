@@ -29,3 +29,5 @@ module "mi_modulo" {
 
   nombre_bucket = "bucket-modulo-localstack"
 }
+
+# Version 1.1 mejora
