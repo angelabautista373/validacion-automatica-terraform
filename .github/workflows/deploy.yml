@@ -1,5 +1,4 @@
 name: Terraform Deploy (LocalStack)
-name: Terraform Deploy (LocalStack)
 
 on:
   push:
