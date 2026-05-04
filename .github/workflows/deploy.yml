@@ -22,7 +22,9 @@ jobs:
             -p 4566:4566 \
             -e SERVICES=s3 \
             -e DEBUG=1 \
+            -e HOSTNAME=localhost \
             localstack/localstack
+
 
       - name: Esperar a LocalStack (health check)
         run: |
