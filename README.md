@@ -1,6 +1,6 @@
 # Validación automática con Terraform
 
-![Terraform Validate](https://github.com/angelabautista373/validacion-automatica-terraform/actions/workflows/terraform.yml/badge.svg)
+![Terraform Validate](https://github.com/validacion-automatica-terraform/actions/workflows/terraform.yml/badge.svg)
 
 Este proyecto automatiza la validación del código Terraform utilizando GitHub Actions.
 
