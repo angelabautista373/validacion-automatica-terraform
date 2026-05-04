@@ -9,15 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    services:
-      localstack:
-        image: localstack/localstack
-        ports:
-          - 4566:4566
-        env:
-          SERVICES: s3
-          DEBUG: 1
-
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
@@ -25,8 +16,22 @@ jobs:
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: Iniciar LocalStack
+        run: |
+          docker run -d \
+            --name localstack \
+            -p 4566:4566 \
+            -e SERVICES=s3 \
+            -e DEBUG=1 \
+            localstack/localstack
+
       - name: Esperar a LocalStack
-        run: sleep 15
+        run: |
+          for i in {1..10}; do
+            curl -s http://localhost:4566/health | grep '"s3": "running"' && break
+            echo "Esperando LocalStack..."
+            sleep 5
+          done
 
       - name: Inicializar Terraform
         run: terraform init
